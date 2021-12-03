@@ -3,6 +3,7 @@ import "./App.css";
 import SignUp from "./components/SignUp";
 import { GameView } from "./components/Game";
 import LogIn from "./components/LogIn";
+import LogOut from "./components/LogOut";
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
       </div>
       <div className="Game">
         <GameView />
+      </div>
+      <div>
+        <LogOut />
       </div>
     </div>
   );
