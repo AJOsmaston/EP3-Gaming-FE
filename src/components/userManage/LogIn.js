@@ -65,6 +65,7 @@ const callAPI = (username, password) => {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
+      "Credentials": "true",
     },
     body: JSON.stringify(user),
   };
