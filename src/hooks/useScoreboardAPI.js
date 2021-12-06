@@ -9,7 +9,6 @@ export const useScoreboardAPI = () => {
     const json = await res.json();
 
     setTopTen(json);
-    console.log(topTen);
   };
 
   useEffect(() => getScoreboard(), []);
