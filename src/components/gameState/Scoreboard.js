@@ -6,7 +6,7 @@ export const Scoreboard = () => {
     <ul>
       Scoreboard:
       {topTen.map((scoreData) => (
-        <li> {scoreData.score} </li>
+        <li> {scoreData.user} : {scoreData.score} </li>
       ))}
     </ul>
   );
