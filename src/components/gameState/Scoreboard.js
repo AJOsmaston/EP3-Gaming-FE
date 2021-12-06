@@ -3,11 +3,11 @@ import { useScoreboardAPI } from "../../hooks/useScoreboardAPI";
 export const Scoreboard = () => {
   const topTen = useScoreboardAPI();
   return (
-    <ul>
+    <ol>
       Scoreboard:
       {topTen.map((scoreData) => (
-        <li> {scoreData.user} : {scoreData.score} </li>
+        <li key={scoreData.id}> {scoreData.user} : {scoreData.score} </li>
       ))}
-    </ul>
+    </ol>
   );
 };
