@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 
 const callApi = async () => {
-  const url = "https://makersep3gamefrontend.herokuapp.com/logout";
+  const url = "https://makersep3gamebackend.herokuapp.com/logout";
   const options = {
     method: "post",
     headers: {
