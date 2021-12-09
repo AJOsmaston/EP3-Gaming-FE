@@ -84,9 +84,9 @@ const callAPI = (username, password, setLoggedIn) => {
     method: "post",
     credentials: 'include',
     headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+  },
     body: JSON.stringify(user),
   };
   fetch("https://makersep3gamebackend.herokuapp.com/login", options)
