@@ -7,6 +7,7 @@ const callApi = async () => {
   const url = "https://makersep3gamebackend.herokuapp.com/logout";
   const options = {
     method: "post",
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

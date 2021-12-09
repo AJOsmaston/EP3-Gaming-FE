@@ -5,7 +5,7 @@ export const useScoreboardAPI = () => {
 
   const getScoreboard = async () => {
     const url = "https://makersep3gamebackend.herokuapp.com/scoreboard";
-    const res = await fetch(url, { method: "GET" });
+    const res = await fetch(url, { method: "GET", credentials: 'include' });
     const json = await res.json();
 
     setTopTen(json);

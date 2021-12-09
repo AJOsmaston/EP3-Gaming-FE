@@ -64,6 +64,7 @@ const callAPI = (username, password, setDisplay) => {
   const user = { username: username, password: password };
   const options = {
     method: "post",
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json",
     },
