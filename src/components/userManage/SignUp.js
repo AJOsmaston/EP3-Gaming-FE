@@ -67,7 +67,7 @@ const callAPI = (username, password) => {
     },
     body: JSON.stringify(user),
   };
-  fetch("/signup", options)
+  fetch("https://makersep3gamefrontend.herokuapp.com/signup", options)
     .then((response) => {
       return response.json();
     })
