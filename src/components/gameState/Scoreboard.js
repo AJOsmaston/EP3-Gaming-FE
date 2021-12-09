@@ -96,7 +96,7 @@ export const Scoreboard = () => {
 };
 
 const callApi = async (setDisplay) => {
-  const url = "/logout";
+  const url = "https://makersep3gamebackend.herokuapp.com/logout";
   const options = {
     method: "post",
     headers: {

@@ -12,7 +12,7 @@ export const useGameAPI = () => {
   };
 
   const changeTurn = async () => {
-    const url = "/turn";
+    const url = "https://makersep3gamebackend.herokuapp.com/turn";
     const res = await fetch(url, { method: "GET" });
     const json = await res.json();
 
@@ -20,7 +20,7 @@ export const useGameAPI = () => {
   };
 
   const changeTurnDoubleDamage = async () => {
-    const url = "/turn-more-damage";
+    const url = "https://makersep3gamebackend.herokuapp.com/turn-more-damage";
     const res = await fetch(url, { method: "GET" });
     const json = await res.json();
 
@@ -28,7 +28,7 @@ export const useGameAPI = () => {
   };
 
   const killPlayer = async () => {
-    const url = "/kill-player";
+    const url = "https://makersep3gamebackend.herokuapp.com/kill-player";
     const res = await fetch(url, { method: "GET" });
     const json = await res.json();
 
