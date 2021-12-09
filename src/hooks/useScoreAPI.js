@@ -5,7 +5,8 @@ export const useScoreAPI = () => {
 
   const sendScore = async () => {
     const url = "/commit-score";
-    const res = await fetch(url, { method: "GET" });
+    const res = await fetch(url, { method: "GET", 
+    credentials: 'include' });
     const json = await res.json();
 
     updateScore(json);
