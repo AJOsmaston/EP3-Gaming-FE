@@ -14,7 +14,7 @@ import Button from "@material-ui/core/Button";
 export const GameView = ({ loggedIn }) => {
   const [game, changeTurn, changeTurnDoubleDamage, killPlayer] = useGameAPI(); //[gameData, changeTurn]
   const [isAttacking, setIsAttacking] = useState(0);
-  const [monsterAttacking, setMonsterAttacking] = useState(false);
+  const [, setMonsterAttacking] = useState(false);
   const [seconds, setSeconds] = useState(2);
   const [active, setActive] = useState(true);
   const [gametimer, setGameTimer] = useState(15);
