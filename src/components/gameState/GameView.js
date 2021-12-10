@@ -24,7 +24,7 @@ export const GameView = ({ loggedIn }) => {
     setMonsterAttacking(true);
     setTimeout(() => {
       setIsAttacking(0);
-    }, 26);
+    }, 166);
   };
 
   const toggleHurt = () => {
