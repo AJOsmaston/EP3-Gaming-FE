@@ -20,7 +20,16 @@ export const HomePage = ({ loggedIn, setLoggedIn, playing, setPlaying }) => {
   const [open, setOpen] = useState(false);
 
   //just to wake up the api on heroku
-  usePlayerNameAPI();
+  const [awake, setAwake] = useState(false)
+  const checkawake = async () => {
+    const url = "https://makersep3gamebackend.herokuapp.com/";
+    const res = await fetch(url, { method: "GET" });
+    const json = await res.json();
+    if (json.success === true){
+      setAwake(true)
+    }
+  };
+
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -46,6 +55,10 @@ export const HomePage = ({ loggedIn, setLoggedIn, playing, setPlaying }) => {
     if (!playing) {
       bernard.play();
       setPlaying(true);
+    }
+    // checks if the api is awake, wakes up if not
+    if (!awake) {
+      checkawake();
     }
   });
 
