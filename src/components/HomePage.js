@@ -11,7 +11,6 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
-import { usePlayerNameAPI } from "../hooks/usePlayerNameAPI";
 
 export const HomePage = ({ loggedIn, setLoggedIn, playing, setPlaying }) => {
   const [showLogin, setShowLogin] = useState(false);
