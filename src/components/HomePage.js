@@ -11,12 +11,16 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
+import { usePlayerNameAPI } from "../hooks/usePlayerNameAPI";
 
 export const HomePage = ({ loggedIn, setLoggedIn, playing, setPlaying }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [display, setDisplay] = useState();
   const [open, setOpen] = useState(false);
+
+  //just to wake up the api on heroku
+  usePlayerNameAPI();
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
