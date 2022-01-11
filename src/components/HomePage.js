@@ -14,30 +14,9 @@ import AuthenticationContext from "../context/AuthenticationContext";
 
 export const HomePage = ({ playing, setPlaying }) => {
   const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
   const [open, setOpen] = useState(false);
 
   const { display } = useContext(AuthenticationContext);
-
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-
-  const logIn = () => {
-    setShowLogin(true);
-    setShowSignup(false);
-  };
-
-  const signUp = () => {
-    setShowLogin(false);
-    setShowSignup(true);
-  };
-
-  const bernard = new Howl({
-    src: Bernard,
-    volume: 0.4,
-    loop: true,
-  });
 
   useEffect(() => {
     if (!playing) {
@@ -46,6 +25,27 @@ export const HomePage = ({ playing, setPlaying }) => {
     }
   });
 
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  // which box to show, login or signup
+  const logIn = () => {
+    setShowLogin(true);
+  };
+
+  const signUp = () => {
+    setShowLogin(false);
+  };
+
+  // do do doo dooo
+  const bernard = new Howl({
+    src: Bernard,
+    volume: 0.4,
+    loop: true,
+  });
+
+  // popup methods
   const toggleOpen = () => {
     setOpen(true);
   };
@@ -94,10 +94,9 @@ export const HomePage = ({ playing, setPlaying }) => {
           </Button>
         </Grid>
         <Grid>
-          {showLogin && (
+          {showLogin ? (
             <LogIn toggleOpen={toggleOpen} />
-          )}
-          {showSignup && (
+          ) : (
             <SignUp toggleOpen={toggleOpen} />
           )}
         </Grid>
