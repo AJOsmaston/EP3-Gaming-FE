@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const LogIn = ({ setDisplay, toggleOpen }) => {
+export const LogIn = ({ toggleOpen }) => {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = ({ toggleOpen }) => {
+const SignUp = ({ toggleOpen, setShowLogin }) => {
   const classes = useStyles();
   
   const [username, setUsername] = useState("");
@@ -35,6 +35,7 @@ const SignUp = ({ toggleOpen }) => {
     callAPISignUp(username, password);
     toggleOpen();
   };
+
 
   return (
     <>

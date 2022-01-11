@@ -6,6 +6,7 @@ export const AuthenticationProvider = ( {children} ) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [display, setDisplay] = useState();
+  const [showLogin, setShowLogin] = useState(false);
 
   const callAPILogIn = (username, password) => {
     const user = { username: username, password: password };
@@ -49,6 +50,9 @@ export const AuthenticationProvider = ( {children} ) => {
       })
       .then((data) => {
         setDisplay(data.message);
+        if (data.success === true) {
+          setShowLogin(true)
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -81,9 +85,11 @@ export const AuthenticationProvider = ( {children} ) => {
   return <AuthenticationContext.Provider value={{
     loggedIn,
     display,
+    showLogin,
     callAPILogIn,
     callAPISignUp,
     callAPILogOut,
+    setShowLogin,
   }}>
     {children}
     </AuthenticationContext.Provider>
