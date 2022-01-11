@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import AuthenticationContext from "../../context/AuthenticationContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,14 +22,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = ({ setDisplay, toggleOpen }) => {
+const SignUp = ({ toggleOpen }) => {
   const classes = useStyles();
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const { callAPISignUp } = useContext(AuthenticationContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    callAPI(username, password, setDisplay);
+    callAPISignUp(username, password);
     toggleOpen();
   };
 
@@ -58,27 +62,6 @@ const SignUp = ({ setDisplay, toggleOpen }) => {
       </form>
     </>
   );
-};
-
-const callAPI = (username, password, setDisplay) => {
-  const user = { username: username, password: password };
-  const options = {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  };
-  fetch("/signup", options)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      setDisplay(data.message);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 export default SignUp;

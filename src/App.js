@@ -7,27 +7,29 @@ import { Scoreboard } from "./components/gameState/Scoreboard";
 import { Layout } from "./components/Layout";
 import { useState } from "react";
 import React from "react";
+import { AuthenticationProvider } from "./context/AuthenticationContext";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [playing, setPlaying] = useState();
 
   return (
     <div>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage loggedIn={loggedIn} setLoggedIn={setLoggedIn} playing={playing} setPlaying={setPlaying} />
-              }
-            />
-            <Route path="/game" element={<GameView loggedIn={loggedIn} />} />
-            <Route path="/scoreboard" element={<Scoreboard />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <AuthenticationProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomePage playing={playing} setPlaying={setPlaying} />
+                }
+              />
+              <Route path="/game" element={<GameView />} />
+              <Route path="/scoreboard" element={<Scoreboard />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </AuthenticationProvider>
     </div>
   );
 };

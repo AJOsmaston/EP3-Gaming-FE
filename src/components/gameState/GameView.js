@@ -11,7 +11,7 @@ import No from "../../audioclips/no.wav";
 import { ExitBox } from "./ExitBox";
 import Button from "@material-ui/core/Button";
 
-export const GameView = ({ loggedIn }) => {
+export const GameView = () => {
   const [game, changeTurn, changeTurnDoubleDamage, killPlayer] = useGameAPI(); //[gameData, changeTurn]
   const [isAttacking, setIsAttacking] = useState(0);
   const [monsterAttacking, setMonsterAttacking] = useState(false);

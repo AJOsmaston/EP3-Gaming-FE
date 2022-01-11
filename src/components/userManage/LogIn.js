@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import AuthenticationContext from "../../context/AuthenticationContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,14 +23,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const LogIn = ({ loggedIn, setLoggedIn, setDisplay, toggleOpen }) => {
+export const LogIn = ({ setDisplay, toggleOpen }) => {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { loggedIn, callAPILogIn } = useContext(AuthenticationContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    callAPI(username, password, setLoggedIn, setDisplay);
+    callAPILogIn(username, password);
     toggleOpen();
   };
 
@@ -76,31 +78,6 @@ export const LogIn = ({ loggedIn, setLoggedIn, setDisplay, toggleOpen }) => {
       )}
     </form>
   );
-};
-
-const callAPI = (username, password, setLoggedIn, setDisplay) => {
-  const user = { username: username, password: password };
-  const options = {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(user),
-  };
-  fetch("/login", options)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      if (data.success === true) {
-        setLoggedIn(true);
-      }
-      setDisplay(data.message);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 export default LogIn;

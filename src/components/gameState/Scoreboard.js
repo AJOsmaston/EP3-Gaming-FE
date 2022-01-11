@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useScoreboardAPI } from "../../hooks/useScoreboardAPI";
 import Score from "./Score";
 import Button from "@material-ui/core/Button";
@@ -8,12 +8,14 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
+import AuthenticationContext from "../../context/AuthenticationContext";
 
 export const Scoreboard = () => {
-  const topTen = useScoreboardAPI();
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [display, setDisplay] = useState();
   const [open, setOpen] = useState(false);
+
+  const { loggedIn, display, callAPILogOut } = useContext(AuthenticationContext);
+
+  const topTen = useScoreboardAPI();
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -24,8 +26,7 @@ export const Scoreboard = () => {
   };
 
   const handleClick = () => {
-    callApi(setDisplay);
-    setLoggedIn(false);
+    callAPILogOut();
     toggleOpen();
   };
 
@@ -95,16 +96,3 @@ export const Scoreboard = () => {
   );
 };
 
-const callApi = async (setDisplay) => {
-  const url = "/logout";
-  const options = {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  };
-  const res = await fetch(url, options);
-  const response = await res.json();
-  setDisplay(response.message);
-};

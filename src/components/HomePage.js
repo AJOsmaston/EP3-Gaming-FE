@@ -1,22 +1,23 @@
 import SignUp from "./userManage/SignUp";
 import LogIn from "./userManage/LogIn";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { Grid } from "@material-ui/core";
 import { Title } from "./Title";
-import { useEffect } from "react";
 import { Howl } from "howler"; // Howler JS Audio library
 import Bernard from "../audioclips/bernard.mp3";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
+import AuthenticationContext from "../context/AuthenticationContext";
 
-export const HomePage = ({ loggedIn, setLoggedIn, playing, setPlaying }) => {
+export const HomePage = ({ playing, setPlaying }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [display, setDisplay] = useState();
   const [open, setOpen] = useState(false);
+
+  const { display } = useContext(AuthenticationContext);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -94,15 +95,10 @@ export const HomePage = ({ loggedIn, setLoggedIn, playing, setPlaying }) => {
         </Grid>
         <Grid>
           {showLogin && (
-            <LogIn
-              loggedIn={loggedIn}
-              setLoggedIn={setLoggedIn}
-              setDisplay={setDisplay}
-              toggleOpen={toggleOpen}
-            />
+            <LogIn toggleOpen={toggleOpen} />
           )}
           {showSignup && (
-            <SignUp setDisplay={setDisplay} toggleOpen={toggleOpen} />
+            <SignUp toggleOpen={toggleOpen} />
           )}
         </Grid>
       </Grid>
